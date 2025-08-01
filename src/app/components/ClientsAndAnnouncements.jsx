@@ -1,14 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from "framer-motion";
-import { PhoneCall} from "lucide-react";
+import { motion } from 'framer-motion';
+import { PhoneCall } from 'lucide-react';
 import { FaStopwatch } from 'react-icons/fa';
-// Updated theme colors from logo
+
+// Theme colors
 const blue = '#1A6EBF';
 const orange = '#F7941D';
 
-// Category tabs and logo items
+// Data
 const categories = ['All', 'Construction', 'Technology', 'Healthcare', 'Education'];
 
 const logos = {
@@ -43,24 +44,53 @@ const announcements = [
     },
 ];
 
+// Animation variants
+const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+};
+
+const staggerContainer = {
+    hidden: {},
+    show: {
+        transition: {
+            staggerChildren: 0.1,
+        },
+    },
+};
+
 export default function ClientsAndAnnouncements() {
     const [active, setActive] = useState('All');
 
     return (
-        <section className="px-4 py-16 text-center bg-white" id='clients'>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1C3D6F] mb-6">
+        <motion.section
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={staggerContainer}
+            className="px-4 py-16 text-center bg-white"
+            id="clients"
+        >
+            {/* Title */}
+            <motion.h2
+                className="text-2xl md:text-3xl font-bold text-[#1C3D6F] mb-6"
+                variants={fadeUp}
+            >
                 10,000+ businesses, from startups to enterprises
-            </h2>
+            </motion.h2>
 
             {/* Tabs */}
-            <div className="flex flex-wrap justify-center gap-6 mb-10 border-b border-gray-200 pb-2">
+            <motion.div
+                className="flex flex-wrap justify-center gap-6 mb-10 border-b border-gray-200 pb-2"
+                variants={fadeUp}
+            >
                 {categories.map((category) => (
                     <button
                         key={category}
                         onClick={() => setActive(category)}
                         className={`pb-2 font-medium text-sm md:text-base border-b-2 transition ${active === category
-                                ? `border-[${blue}] text-[${blue}]`
-                                : 'border-transparent text-gray-600 hover:text-[#1A6EBF]'
+                            ? `border-[${blue}] text-[${blue}]`
+                            : 'border-transparent text-gray-600 hover:text-[#1A6EBF]'
                             }`}
                         style={{
                             borderColor: active === category ? blue : 'transparent',
@@ -70,40 +100,43 @@ export default function ClientsAndAnnouncements() {
                         {category}
                     </button>
                 ))}
-            </div>
+            </motion.div>
 
             {/* Logos */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-5xl mx-auto mb-10">
+            <motion.div
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-5xl mx-auto mb-10"
+                variants={staggerContainer}
+            >
                 {logos[active].map((name, index) => (
-                    <div
+                    <motion.div
                         key={index}
                         className="shadow rounded px-4 py-3 text-sm font-semibold flex items-center justify-center h-16"
                         style={{
                             backgroundColor:
                                 active === 'All'
-                                    ? '#E6F0FF' // light blue background for All
-                                    : active === 'Construction'
-                                        ? '#FFF3E0' // light orange background for Construction
-                                        : active === 'Technology'
-                                            ? '#E6F0FF' // light blue background for Technology
-                                            : active === 'Healthcare'
-                                                ? '#FFF3E0' // light orange background for Healthcare
-                                                : active === 'Education'
-                                                    ? '#FFF3E0' // light orange background for Education
-                                                    : 'white',
+                                    ? '#E6F0FF'
+                                    : active === 'Construction' ||
+                                        active === 'Healthcare' ||
+                                        active === 'Education'
+                                        ? '#FFF3E0'
+                                        : '#E6F0FF',
                             color:
                                 active === 'All' || active === 'Technology'
                                     ? blue
                                     : orange,
                         }}
+                        variants={fadeUp}
                     >
                         {name}
-                    </div>
+                    </motion.div>
                 ))}
-            </div>
+            </motion.div>
 
             {/* CTA Buttons */}
-            <div className="flex justify-center gap-4 mb-16">
+            <motion.div
+                className="flex justify-center gap-4 mb-16"
+                variants={fadeUp}
+            >
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -124,19 +157,31 @@ export default function ClientsAndAnnouncements() {
                     type="button"
                 >
                     <span className="transition-all duration-500 group-hover:opacity-0 group-hover:scale-0">
-                    Start Free Trial
+                        Start Free Trial
                     </span>
                     <span className="absolute inset-0 flex items-center justify-center opacity-0 scale-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-100 pointer-events-none">
                         <FaStopwatch className="w-5 h-5" />
-                     </span>
+                    </span>
                 </motion.button>
-            </div>
+            </motion.div>
 
             {/* Announcements */}
-            <h3 className="text-xl font-bold text-[#1C3D6F] mb-10">Trinexa Global announcements</h3>
-            <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+            <motion.h3
+                className="text-xl font-bold text-[#1C3D6F] mb-10"
+                variants={fadeUp}
+            >
+                Trinexa Global announcements
+            </motion.h3>
+            <motion.div
+                className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto"
+                variants={staggerContainer}
+            >
                 {announcements.map((item, index) => (
-                    <div key={index} className="bg-white text-left space-y-3">
+                    <motion.div
+                        key={index}
+                        className="bg-white text-left space-y-3"
+                        variants={fadeUp}
+                    >
                         <div className="w-full h-40 bg-green-100 rounded-md mb-2 flex items-center justify-center">
                             <span className="text-green-600 font-bold">Image Placeholder</span>
                         </div>
@@ -151,9 +196,9 @@ export default function ClientsAndAnnouncements() {
                         >
                             {item.learn} &rarr;
                         </a>
-                    </div>
+                    </motion.div>
                 ))}
-            </div>
-        </section>
+            </motion.div>
+        </motion.section>
     );
 }

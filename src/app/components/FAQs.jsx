@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const faqData = [
     {
@@ -42,14 +43,14 @@ const faqData = [
 ];
 
 export default function FAQs() {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState (null);
 
     const toggleFAQ = (index) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
 
     return (
-        <section className="bg-white py-20 px-4" id='faqs'>
+        <section className="bg-white py-20 px-4" id="faqs">
             <div className="max-w-5xl mx-auto">
                 <h2 className="text-3xl font-bold text-center text-[#1A6EBF] mb-12">
                     Frequently Asked Questions
@@ -67,9 +68,20 @@ export default function FAQs() {
                                     {activeIndex === index ? <FaChevronUp /> : <FaChevronDown />}
                                 </span>
                             </button>
-                            {activeIndex === index && (
-                                <p className="mt-3 text-gray-600 text-sm">{faq.answer}</p>
-                            )}
+
+                            {/* Animated answer section */}
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{
+                                    opacity: activeIndex === index ? 1 : 0,
+                                    height: activeIndex === index ? 'auto' : 0,
+                                }}
+                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                            >
+                                {activeIndex === index && (
+                                    <p className="mt-3 text-gray-600 text-sm">{faq.answer}</p>
+                                )}
+                            </motion.div>
                         </div>
                     ))}
                 </div>

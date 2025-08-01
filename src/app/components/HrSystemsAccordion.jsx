@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { HiChevronUp, HiChevronDown } from 'react-icons/hi';
+import { motion } from 'framer-motion';
 
 const sections = [
     {
@@ -32,10 +33,16 @@ const sections = [
 ];
 
 export default function HrSystemsAccordion() {
-    const [openIndex, setOpenIndex] = useState(0);
+    const [openIndex, setOpenIndex] = useState(null);
+
+    // Variants for animating the content visibility
+    const contentVariants = {
+        hidden: { opacity: 0, maxHeight: 0 },
+        visible: { opacity: 1, maxHeight: 1000, transition: { duration: 0.5 } },
+    };
 
     return (
-        <section className="py-16 px-4 bg-white" id='working-method'>
+        <section className="py-16 px-4 bg-white" id="working-method">
             <div className="max-w-7xl mx-auto">
                 <h2 className="text-3xl font-bold text-center text-[#1C3D6F] mb-12">
                     Combine all your HR systems into one platform
@@ -47,9 +54,7 @@ export default function HrSystemsAccordion() {
                         {sections.map((section, index) => (
                             <div key={index} className="border-b border-gray-200 pb-4">
                                 <button
-                                    onClick={() =>
-                                        setOpenIndex(openIndex === index ? null : index)
-                                    }
+                                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
                                     className="w-full text-left flex justify-between items-center text-lg font-semibold"
                                 >
                                     {section.title}
@@ -58,19 +63,31 @@ export default function HrSystemsAccordion() {
                                     </span>
                                 </button>
 
-                                {openIndex === index && (
-                                    <div className="mt-3 text-gray-600 text-sm md:text-base">
-                                        <p className="mb-4">{section.content}</p>
-                                        <div className="flex gap-3">
-                                            <button className="bg-[#107c10] text-white font-medium px-5 py-2 rounded-full">
-                                                Get a Demo
-                                            </button>
-                                            <button className="border border-[#107c10] text-[#107c10] font-medium px-5 py-2 rounded-full hover:bg-[#f6fff6]">
-                                                Learn More
-                                            </button>
-                                        </div>
+                                {/* Animated content */}
+                                <motion.div
+                                    variants={contentVariants}
+                                    initial="hidden"
+                                    animate={openIndex === index ? 'visible' : 'hidden'}
+                                    className="mt-3 text-gray-600 text-sm md:text-base overflow-hidden"
+                                >
+                                    <p className="mb-4">{section.content}</p>
+                                    <div className="flex gap-3">
+                                        <motion.button
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            className="bg-[#107c10] text-white font-medium px-5 py-2 rounded-full"
+                                        >
+                                            Get a Demo
+                                        </motion.button>
+                                        <motion.button
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            className="border border-[#107c10] text-[#107c10] font-medium px-5 py-2 rounded-full hover:bg-[#f6fff6]"
+                                        >
+                                            Learn More
+                                        </motion.button>
                                     </div>
-                                )}
+                                </motion.div>
                             </div>
                         ))}
                     </div>

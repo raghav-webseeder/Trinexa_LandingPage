@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
+import { AnimatePresence } from 'framer-motion';
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -104,22 +105,65 @@ export default function Header() {
                 </button>
             </div>
 
-            {isOpen && (
-                <div className="md:hidden bg-white px-4 pb-4 space-y-2">
-                    {navItems.map(({ label, href }) => (
-                        <a
-                            key={label}
-                            href={href}
-                            className="block text-[#1C3D6F] hover:text-[#0072CE] transition"
+            <AnimatePresence>
+                {isOpen && (
+                    <>
+                        {/* Background Overlay */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.5 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => setIsOpen(false)}
+                            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
+                        />
+
+                        {/* Sliding Mobile Menu */}
+                        <motion.div
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            className="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white z-50 shadow-lg p-6 flex flex-col space-y-6"
                         >
-                            {label}
-                        </a>
-                    ))}
-                    <button className="w-full mt-2 bg-[#F7941D] hover:bg-[#e38114] text-white px-4 py-2 rounded-full text-sm transition">
-                        Get a Demo
-                    </button>
-                </div>
-            )}
+                            {/* Close Button */}
+                            <div className="flex justify-end">
+                                <button
+                                    onClick={() => setIsOpen(false)}
+                                    className="text-[#0072CE] hover:text-[#e38114] transition"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M6 18L18 6M6 6l12 12"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            {/* Navigation Items */}
+                            {navItems.map(({ label, href }) => (
+                                <a
+                                    key={label}
+                                    href={href}
+                                    onClick={() => setIsOpen(false)}
+                                    className="text-[#1C3D6F] text-base font-medium hover:text-[#0072CE] transition"
+                                >
+                                    {label}
+                                </a>
+                            ))}
+
+                            {/* Demo Button */}
+                            <button className="bg-[#F7941D] hover:bg-[#e38114] text-white px-4 py-2 rounded-full text-sm transition">
+                                Get a Demo
+                            </button>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+
         </motion.header>
     );
 }
