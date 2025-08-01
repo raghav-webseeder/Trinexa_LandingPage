@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@layer components {
+  .input-style {
+    @apply border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-[#1A6EBF] text-sm text-[#1A3B5D];
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
