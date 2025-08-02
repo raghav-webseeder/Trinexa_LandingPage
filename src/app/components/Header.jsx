@@ -68,7 +68,7 @@ export default function Header() {
                     className="flex items-center space-x-2 cursor-pointer"
                     onClick={handleLogoClick}
                 >
-                    <img src="/logo.webp" alt="Trinexa Global Logo" className="h-12 w-auto" />
+                    <img src="/logo.png" alt="Trinexa Global Logo" className="h-12 w-" />
                 </div>
 
                 <nav className="hidden md:flex space-x-6 text-sm text-[#1C3D6F] font-medium">
