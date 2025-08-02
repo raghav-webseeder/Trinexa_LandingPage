@@ -75,23 +75,33 @@ export default function ClientSavingsSection() {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: false, amount: 0.3 }}
-                className="flex justify-center gap-6"
+                className="flex justify-center gap-4 flex-wrap"
             >
+                {/* Primary Button */}
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-[#F7941D] text-white px-6 py-3 rounded-full font-medium shadow hover:bg-[#cc7515] transition"
+                    onClick={() => {
+                        const demoSection = document.getElementById('demo');
+                        if (demoSection) {
+                            demoSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}
+                    className="cursor-pointer bg-gradient-to-r from-[#F7941D] to-[#ff9f3e] text-white px-7 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#F7941D]/50"
                 >
                     Get a Demo
                 </motion.button>
+
+                {/* Secondary Button */}
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="border border-[#F7941D] text-[#F7941D] px-6 py-3 rounded-full font-medium hover:bg-[#fff3e5] transition"
+                    className="cursor-pointer border-2 border-[#F7941D] text-[#F7941D] px-7 py-3 rounded-full font-semibold bg-white hover:bg-[#fff6eb] transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#F7941D]/20"
                 >
                     See Case Studies
                 </motion.button>
             </motion.div>
+
         </motion.section>
     );
 }

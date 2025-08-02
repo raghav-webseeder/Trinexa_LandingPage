@@ -126,13 +126,27 @@ export default function Customers() {
 
                 {/* CTAs */}
                 <div className="flex justify-center gap-4 mt-12">
-                    <button className="bg-[#1C3D6F] hover:bg-[#16325c] text-white px-6 py-2 rounded-full text-sm font-medium transition">
+                    {/* Primary Button */}
+                    <button
+                        className="cursor-pointer bg-[#1C3D6F] text-white px-7 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1C3D6F]"
+                        onClick={() => {
+                            const demoSection = document.getElementById('demo');
+                            if (demoSection) {
+                                demoSection.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
+                    >
                         Get a Demo
                     </button>
-                    <button className="bg-white text-[#1C3D6F] border border-[#1C3D6F] hover:bg-[#F0F4FA] px-6 py-2 rounded-full text-sm font-medium transition">
+
+                    {/* Secondary Button */}
+                    <button
+                        className="cursor-pointer bg-white text-[#1C3D6F] border border-[#1C3D6F] px-7 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:bg-[#F0F4FA] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1C3D6F]"
+                    >
                         Start Free Trial
                     </button>
                 </div>
+
             </div>
         </section>
     );

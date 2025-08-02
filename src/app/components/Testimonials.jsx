@@ -110,8 +110,9 @@ export default function Testimonials() {
                         variants={formVariants}
                         initial="hidden"
                         animate="visible"
+                        id='demo'
                     >
-                        <h3 className="text-xl font-semibold text-[#1A6EBF] mb-4">Schedule a Demo</h3>
+                        <h3 className="text-xl font-semibold text-[#1A6EBF] mb-4">Request a Demo</h3>
 
                         <form className="space-y-4">
                             <div>

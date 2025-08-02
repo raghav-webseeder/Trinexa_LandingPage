@@ -1,18 +1,25 @@
 'use client';
 import { motion } from "framer-motion";
+import {
+    Briefcase,
+    BarChart3,
+    Clock,
+    HeartHandshake,
+    Users,
+    Star
+} from "lucide-react";
 import { PhoneCall } from "lucide-react";
 
 export default function Hero() {
     const features = [
-        'Hiring & Onboarding',
-        'HR Data & Reporting',
-        'Payroll & Time',
-        'Benefits Administration',
-        'Employee Experience',
-        'Performance Management',
+        { label: 'Hiring & Onboarding', icon: Briefcase },
+        { label: 'HR Data & Reporting', icon: BarChart3 },
+        { label: 'Payroll & Time', icon: Clock },
+        { label: 'Benefits Administration', icon: HeartHandshake },
+        { label: 'Employee Experience', icon: Users },
+        { label: 'Performance Management', icon: Star },
     ];
 
-    // Animation Variants
     const containerVariants = {
         hidden: {},
         show: {
@@ -35,7 +42,6 @@ export default function Hero() {
             animate="show"
             variants={containerVariants}
         >
-            {/* Top Ratings */}
             <motion.div
                 className="flex flex-wrap justify-center gap-6 text-base md:text-lg text-[#1C3D6F] mb-6"
                 variants={fadeUp}
@@ -53,7 +59,6 @@ export default function Hero() {
                 </div>
             </motion.div>
 
-            {/* Heading */}
             <motion.h1
                 className="text-5xl md:text-6xl font-extrabold text-[#0072CE] mb-4"
                 variants={fadeUp}
@@ -67,31 +72,38 @@ export default function Hero() {
                 One Easy-to-Use Platform for Everything HR
             </motion.p>
 
-            {/* Features */}
             <motion.div
                 className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12"
                 variants={containerVariants}
             >
-                {features.map((feature, index) => (
+                {features.map(({ label, icon: Icon }) => (
                     <motion.div
-                        key={feature}
+                        key={label}
                         className="flex flex-col items-center text-[#0072CE]"
                         variants={fadeUp}
                     >
-                        <div className="w-12 h-12 bg-[#0072CE]/20 rounded-full mb-2" />
-                        <span className="text-base md:text-lg font-medium">{feature}</span>
+                        <div className="w-12 h-12 bg-[#0072CE]/10 rounded-full flex items-center justify-center mb-2">
+                            <Icon className="w-6 h-6 text-[#0072CE]" />
+                        </div>
+                        <span className="text-base md:text-lg font-medium">{label}</span>
                     </motion.div>
                 ))}
             </motion.div>
 
-            {/* CTA Button */}
             <motion.button
                 whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group inline-flex items-center justify-center cursor-pointer bg-[#F7941D] hover:bg-[#e38114] text-white rounded-full px-8 py-4 text-xl md:text-2xl transition relative overflow-hidden"
-                type="button"
+                whileTap={{ scale: 0.97 }}
                 variants={fadeUp}
+                type="button"
+                className="group relative inline-flex items-center justify-center px-6 py-4 rounded-full text-lg md:text-lg font-semibold text-white bg-[#F7941D] hover:bg-[#e38114] transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400"
+                onClick={() => {
+                    const demoSection = document.getElementById("demo");
+                    if (demoSection) {
+                        demoSection.scrollIntoView({ behavior: "smooth" });
+                    }
+                }}
             >
+
                 <span className="transition-all duration-500 group-hover:opacity-0 group-hover:scale-0">
                     Get a Demo
                 </span>
@@ -100,7 +112,7 @@ export default function Hero() {
                 </span>
             </motion.button>
 
-            {/* Payroll Overview Card */}
+
             <motion.div
                 className="mt-16 max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6 md:p-8 text-left"
                 variants={fadeUp}

@@ -142,6 +142,12 @@ export default function ClientsAndAnnouncements() {
                     whileTap={{ scale: 0.95 }}
                     className="group inline-flex items-center justify-center cursor-pointer bg-[#F7941D] hover:bg-[#e38114] text-white rounded-full px-6 py-3 text-xl transition relative overflow-hidden"
                     type="button"
+                    onClick={() => {
+                        const demoSection = document.getElementById('demo');
+                        if (demoSection) {
+                            demoSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}
                 >
                     <span className="transition-all duration-500 group-hover:opacity-0 group-hover:scale-0">
                         Get a Demo

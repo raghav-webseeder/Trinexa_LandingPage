@@ -40,6 +40,14 @@ export default function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const scrollToDemo = () => {
+        const section = document.getElementById('demo');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+            setIsOpen(false); 
+        }
+    };
+
     const handleLogoClick = () => {
         if (pathname !== '/') {
             router.push('/');
@@ -81,6 +89,7 @@ export default function Header() {
                         whileTap={{ scale: 0.95 }}
                         className="group inline-flex items-center justify-center cursor-pointer bg-[#F7941D] hover:bg-[#e38114] text-white rounded-full px-4 py-2 text-sm transition relative overflow-hidden"
                         type="button"
+                        onClick={scrollToDemo}
                     >
                         <span className="transition-all duration-500 group-hover:opacity-0 group-hover:scale-0">
                             Get a Demo
@@ -89,6 +98,7 @@ export default function Header() {
                             <Send className="w-5 h-5" />
                         </span>
                     </motion.button>
+
                 </div>
 
                 <button
@@ -156,9 +166,13 @@ export default function Header() {
                             ))}
 
                             {/* Demo Button */}
-                            <button className="bg-[#F7941D] hover:bg-[#e38114] text-white px-4 py-2 rounded-full text-sm transition">
+                            <button
+                                onClick={scrollToDemo}
+                                className="bg-[#F7941D] hover:bg-[#e38114] text-white px-4 py-2 rounded-full text-sm transition"
+                            >
                                 Get a Demo
                             </button>
+
                         </motion.div>
                     </>
                 )}
