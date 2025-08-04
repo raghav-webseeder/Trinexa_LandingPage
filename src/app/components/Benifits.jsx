@@ -16,11 +16,11 @@ export default function BenefitsSection() {
             className="py-16 px-4 bg-white max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10"
         >
             <motion.div
-                className="flex-shrink-0 w-full md:w-1/3 max-w-xs h-72 md:h-72 rounded-lg overflow-hidden shadow-md"
+                className="flex-shrink-0 w-full md:w-1/3 max-w-full h-72 md:h-72 rounded-lg overflow-hidden shadow-md"
                 variants={fadeUp}
             >
                 <img
-                    src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
+                    src="/emp.jpg"
                     alt="Happy diverse team smiling"
                     className="w-full h-full object-cover"
                 />

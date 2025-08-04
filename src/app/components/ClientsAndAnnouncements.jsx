@@ -28,18 +28,21 @@ const announcements = [
         description:
             'Simplify your entire pay process—from benchmarking to planning and approvals—with Trinexa Global Compensation Management.',
         learn: 'Learn More',
+        image: "/compensation.jpg"
     },
     {
         title: 'Hire Globally, Confidently—with Trinexa Global Employer of Record',
         description:
             'Expand your talent pool and pay a diverse, global workforce with accuracy, compliance, and peace-of-mind.',
         learn: 'Learn More & Join Our Waitlist',
+        image: "/hiring.jpg"
     },
     {
         title: 'Make Smarter Workforce Decisions with Advanced Insights',
         description:
             'Our new Custom Dashboards and HR Benchmarks give you the trends and context to drive more strategic people decisions.',
         learn: 'Learn More',
+        image: "/decision.jpg"
     },
 ];
 
@@ -180,9 +183,12 @@ export default function ClientsAndAnnouncements() {
                         className="bg-white text-left space-y-3"
                         variants={fadeUp}
                     >
-                        <div className="w-full h-40 bg-green-100 rounded-md mb-2 flex items-center justify-center">
-                            <span className="text-green-600 font-bold">Image Placeholder</span>
-                        </div>
+                       
+                            <img
+                                src={item.image}
+                                alt="Announcement"
+                                className="w-full h-40 object-cover rounded-md mb-2"
+                            />
                         <h4 className="font-semibold text-[#1C3D6F]">{item.title}</h4>
                         <p className="text-sm text-gray-600">{item.description}</p>
                         <a

@@ -69,16 +69,17 @@ export default function HrSystemsAccordion() {
                                     <p className="mb-4">{section.content}</p>
                                     <div className="flex gap-3">
                                         <motion.button
-                                            whileHover={{ scale: 1.05 }}
+                                            whileHover={{ background: "rgb(29,83,29)" }}
                                             whileTap={{ scale: 0.95 }}
-                                            className="bg-[#107c10] text-white font-medium px-5 py-2 rounded-full"
+                                            className="bg-[#107c10] cursor-pointer text-white font-medium px-4 py-2 rounded-full"
+                                            onClick={() => window.location.hash = 'demo'}
                                         >
                                             Get a Demo
                                         </motion.button>
                                         <motion.button
-                                            whileHover={{ scale: 1.05 }}
+                                            whileHover={{ background: "#58a966", color:"white" }}
                                             whileTap={{ scale: 0.95 }}
-                                            className="border border-[#107c10] text-[#107c10] font-medium px-5 py-2 rounded-full hover:bg-[#f6fff6]"
+                                            className="cursor-pointer border border-[#107c10] text-[#58a966] font-medium px-5 py-2 rounded-full"
                                         >
                                             Learn More
                                         </motion.button>
@@ -88,11 +89,14 @@ export default function HrSystemsAccordion() {
                         ))}
                     </div>
                     <div className="flex-1 hidden md:block">
-                        <div className="w-full h-[500px] bg-green-100 rounded-lg shadow flex items-center justify-center text-green-700 font-semibold">
-                            Visual Placeholder
-                            <br />
-                            (Payroll Dashboard, Time Off, Benefits, etc.)
+                        <div className="w-full h-[500px] rounded-lg flex items-center justify-center text-green-700 font-semibold overflow-hidden">
+                            <img
+                                src="/3129847.png"
+                                alt="Payroll Dashboard, Time Off, Benefits"
+                                className="object-contain h-full w-full opacity-50"
+                            />
                         </div>
+
                     </div>
                 </div>
             </div>
