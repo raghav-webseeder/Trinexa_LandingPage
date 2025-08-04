@@ -67,7 +67,7 @@ export default function ClientsAndAnnouncements() {
         <motion.section
             initial="hidden"
             whileInView="show"
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={staggerContainer}
             className="px-4 py-16 text-center bg-white"
             id="clients"
