@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { LogIn, Send } from 'lucide-react';
+import { LogIn } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 
@@ -40,10 +40,8 @@ export default function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-
-    // To be set: Login Route
     const goToLogin = () => {
-
+        router.push('/login'); 
     };
 
     const handleLogoClick = () => {
@@ -66,26 +64,28 @@ export default function Header() {
                     className="flex items-center space-x-2 cursor-pointer"
                     onClick={handleLogoClick}
                 >
-                    <img src="/logo.png" alt="Trinexa Global Logo" className="h-12 w-" />
+                    <img src="/logo.png" alt="Trinexa Global Logo" className="h-12" />
                 </div>
 
-                <nav className="hidden md:flex space-x-6 text-sm text-[#1C3D6F] font-medium">
-                    {navItems.map(({ label, href }) => (
-                        <a
-                            key={label}
-                            href={href}
-                            className="hover:text-[#0072CE] transition"
-                        >
-                            {label}
-                        </a>
-                    ))}
-                </nav>
+                {pathname === '/' && (
+                    <nav className="hidden md:flex space-x-6 text-sm text-[#1C3D6F] font-medium">
+                        {navItems.map(({ label, href }) => (
+                            <a
+                                key={label}
+                                href={href}
+                                className="hover:text-[#0072CE] transition"
+                            >
+                                {label}
+                            </a>
+                        ))}
+                    </nav>
+                )}
 
                 <div className="hidden md:block">
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="group inline-flex items-center justify-center cursor-pointer bg-[#F7941D] hover:bg-[#e38114] text-white rounded-full px-4 py-2 text-sm transition relative overflow-hidden"
+                        className="group inline-flex items-center justify-center cursor-pointer bg-[#F7941D] hover:bg-[#e38114] text-white rounded-lg px-6 py-3 text-sm transition relative overflow-hidden"
                         type="button"
                         onClick={goToLogin}
                     >
@@ -96,9 +96,9 @@ export default function Header() {
                             <LogIn className="w-5 h-5" />
                         </span>
                     </motion.button>
-
                 </div>
 
+                {/* Mobile button*/}
                 <button
                     className="md:hidden text-[#0072CE] focus:outline-none"
                     onClick={() => setIsOpen(!isOpen)}
@@ -113,10 +113,10 @@ export default function Header() {
                 </button>
             </div>
 
+            {/* Mobile */}
             <AnimatePresence>
                 {isOpen && (
                     <>
-                        {/* Background Overlay */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 0.5 }}
@@ -125,8 +125,6 @@ export default function Header() {
                             onClick={() => setIsOpen(false)}
                             className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
                         />
-
-                        {/* Sliding Mobile Menu */}
                         <motion.div
                             initial={{ x: "100%" }}
                             animate={{ x: 0 }}
@@ -134,7 +132,6 @@ export default function Header() {
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                             className="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white z-50 shadow-lg p-6 flex flex-col space-y-6"
                         >
-                            {/* Close Button */}
                             <div className="flex justify-end">
                                 <button
                                     onClick={() => setIsOpen(false)}
@@ -151,8 +148,7 @@ export default function Header() {
                                 </button>
                             </div>
 
-                            {/* Navigation Items */}
-                            {navItems.map(({ label, href }) => (
+                            {pathname === '/' && navItems.map(({ label, href }) => (
                                 <a
                                     key={label}
                                     href={href}
@@ -169,12 +165,10 @@ export default function Header() {
                             >
                                 Login
                             </button>
-
                         </motion.div>
                     </>
                 )}
             </AnimatePresence>
-
         </motion.header>
     );
 }

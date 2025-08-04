@@ -5,11 +5,10 @@ import { motion } from 'framer-motion';
 import { PhoneCall } from 'lucide-react';
 import { FaStopwatch } from 'react-icons/fa';
 
-// Theme colors
+
 const blue = '#1A6EBF';
 const orange = '#F7941D';
 
-// Data
 const categories = ['All', 'Construction', 'Technology', 'Healthcare', 'Education'];
 
 const logos = {
@@ -44,7 +43,6 @@ const announcements = [
     },
 ];
 
-// Animation variants
 const fadeUp = {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
@@ -71,7 +69,6 @@ export default function ClientsAndAnnouncements() {
             className="px-4 py-16 text-center bg-white"
             id="clients"
         >
-            {/* Title */}
             <motion.h2
                 className="text-2xl md:text-3xl font-bold text-[#1C3D6F] mb-6"
                 variants={fadeUp}
@@ -79,7 +76,6 @@ export default function ClientsAndAnnouncements() {
                 10,000+ businesses, from startups to enterprises
             </motion.h2>
 
-            {/* Tabs */}
             <motion.div
                 className="flex flex-wrap justify-center gap-6 mb-10 border-b border-gray-200 pb-2"
                 variants={fadeUp}
@@ -102,7 +98,6 @@ export default function ClientsAndAnnouncements() {
                 ))}
             </motion.div>
 
-            {/* Logos */}
             <motion.div
                 className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-5xl mx-auto mb-10"
                 variants={staggerContainer}
@@ -131,8 +126,6 @@ export default function ClientsAndAnnouncements() {
                     </motion.div>
                 ))}
             </motion.div>
-
-            {/* CTA Buttons */}
             <motion.div
                 className="flex justify-center gap-4 mb-16"
                 variants={fadeUp}
@@ -171,7 +164,6 @@ export default function ClientsAndAnnouncements() {
                 </motion.button>
             </motion.div>
 
-            {/* Announcements */}
             <motion.h3
                 className="text-xl font-bold text-[#1C3D6F] mb-10"
                 variants={fadeUp}

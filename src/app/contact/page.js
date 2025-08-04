@@ -1,19 +1,75 @@
 "use client";
 
+import { useState } from "react";
 import {
-  FaPhone,
   FaEnvelope,
   FaMapMarkerAlt,
   FaFacebook,
   FaLinkedin,
   FaTwitter,
+  FaPhoneAlt,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { ToastContainer } from "react-toastify";
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    companyName: "",
+    role: "",
+    companySize: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+ 
+    for (let key in formData) {
+      if (!formData[key]) {
+        toast.error("Please fill out all required fields.", {
+          position: "top-right",
+        });
+        return;
+      }
+    }
+
+    console.log("Form Data Submitted:", formData);
+    toast.success(
+      "Thank you for contacting us! We will get back to you soon.",
+      {
+        position: "top-right",
+      }
+    );
+
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      companyName: "",
+      role: "",
+      companySize: "",
+      subject: "",
+      message: "",
+    });
+  };
+
   return (
     <main className="bg-white text-[#1A3B5D] px-4 py-16">
+      <ToastContainer /> 
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
-        {/* Left - Contact Info */}
         <div className="space-y-6">
           <h2 className="text-3xl font-bold mb-4">Contact our team</h2>
           <p>
@@ -25,19 +81,9 @@ export default function ContactPage() {
             <h4 className="font-semibold text-lg">Sales Hours</h4>
             <ul className="text-sm leading-relaxed mt-2">
               <li>
-                <strong>US, Canada, and Latin America:</strong>
+                <strong>India:</strong>
                 <br />
-                Monday–Friday, 6 AM to 5 PM PT
-              </li>
-              <li className="mt-2">
-                <strong>Europe, Middle East, Africa:</strong>
-                <br />
-                Monday–Friday, 8 AM to 6 PM CET
-              </li>
-              <li className="mt-2">
-                <strong>Asia Pacific:</strong>
-                <br />
-                Monday–Friday, 9 AM to 5 PM JST
+                Monday–Friday, 9 AM to 6 PM IST
               </li>
             </ul>
           </div>
@@ -45,11 +91,13 @@ export default function ContactPage() {
           <div>
             <h4 className="font-semibold text-lg">Our office</h4>
             <p className="text-sm text-[#1A3B5D]/80 mt-1 flex items-center gap-2">
-              <FaMapMarkerAlt className="text-[#F7941D]" /> 47 Pine Street, NYC,
-              USA
+              <FaMapMarkerAlt className="text-[#F7941D]" /> India
             </p>
             <p className="text-sm flex items-center gap-2 mt-1">
-              <FaPhone className="text-[#F7941D]" /> +1 (800) 123-4567
+              <FaPhoneAlt className="text-[#F7941D]" /> +91 98765 43210
+            </p>
+            <p className="text-sm flex items-center gap-2 mt-1">
+              <FaEnvelope className="text-[#F7941D]" /> contact@tghrms.com
             </p>
           </div>
 
@@ -63,42 +111,69 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Right - Contact Form */}
         <div className="bg-[#F4F8FB] p-6 rounded-lg shadow">
           <h3 className="text-xl font-semibold mb-4">Email us</h3>
           <p className="text-sm mb-6 text-[#1A3B5D]/70">
             Just complete the form below
           </p>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid md:grid-cols-2 gap-4">
               <input
                 type="text"
+                name="firstName"
                 placeholder="First Name"
-                className="input-style"
+                value={formData.firstName}
+                onChange={handleChange}
+                className={inputStyle}
+                required
               />
               <input
                 type="text"
+                name="lastName"
                 placeholder="Last Name"
-                className="input-style"
+                value={formData.lastName}
+                onChange={handleChange}
+                className={inputStyle}
+                required
               />
             </div>
             <input
               type="email"
+              name="email"
               placeholder="Email"
-              className="input-style w-full"
+              value={formData.email}
+              onChange={handleChange}
+              className={`${inputStyle} w-full`}
+              required
             />
             <input
               type="text"
+              name="companyName"
               placeholder="Company Name"
-              className="input-style w-full"
+              value={formData.companyName}
+              onChange={handleChange}
+              className={`${inputStyle} w-full`}
+              required
             />
             <div className="grid md:grid-cols-2 gap-4">
-              <select className="input-style">
+              <select
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                className={inputStyle}
+                required
+              >
                 <option value="">Select Role</option>
                 <option>HR</option>
                 <option>CEO</option>
               </select>
-              <select className="input-style">
+              <select
+                name="companySize"
+                value={formData.companySize}
+                onChange={handleChange}
+                className={inputStyle}
+                required
+              >
                 <option value="">Company Size</option>
                 <option>1-50</option>
                 <option>51-200</option>
@@ -107,13 +182,21 @@ export default function ContactPage() {
             </div>
             <input
               type="text"
+              name="subject"
               placeholder="Subject"
-              className="input-style w-full"
+              value={formData.subject}
+              onChange={handleChange}
+              className={`${inputStyle} w-full`}
+              required
             />
             <textarea
               rows="4"
+              name="message"
               placeholder="Message"
-              className="input-style w-full"
+              value={formData.message}
+              onChange={handleChange}
+              className={`${inputStyle} w-full`}
+              required
             ></textarea>
 
             <button

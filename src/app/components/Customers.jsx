@@ -124,9 +124,7 @@ export default function Customers() {
                     ))}
                 </Masonry>
 
-                {/* CTAs */}
                 <div className="flex justify-center gap-4 mt-12">
-                    {/* Primary Button */}
                     <button
                         className="cursor-pointer bg-[#1C3D6F] text-white px-7 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1C3D6F]"
                         onClick={() => {
@@ -138,8 +136,6 @@ export default function Customers() {
                     >
                         Get a Demo
                     </button>
-
-                    {/* Secondary Button */}
                     <button
                         className="cursor-pointer bg-white text-[#1C3D6F] border border-[#1C3D6F] px-7 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:bg-[#F0F4FA] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1C3D6F]"
                     >

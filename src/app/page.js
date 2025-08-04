@@ -15,7 +15,7 @@ export default function Home() {
       <HrSystemsAccordion />
       <BenefitsSection />
       <ClientSavingsSection />
-      <Customers />
+      {/* <Customers /> */}
       <Testimonials />
       <FAQs />
     </>

@@ -52,7 +52,7 @@ export default function FAQs() {
     return (
         <section className="bg-white py-20 px-4" id="faqs">
             <div className="max-w-5xl mx-auto">
-                <h2 className="text-3xl font-bold text-center text-[#1A6EBF] mb-12">
+                <h2 className="text-2xl text-center md:text-3xl font-bold text-[#1C3D6F] mb-12">
                     Frequently Asked Questions
                 </h2>
 
@@ -69,7 +69,6 @@ export default function FAQs() {
                                 </span>
                             </button>
 
-                            {/* Animated answer section */}
                             <motion.div
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{

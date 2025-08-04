@@ -35,7 +35,6 @@ const sections = [
 export default function HrSystemsAccordion() {
     const [openIndex, setOpenIndex] = useState(null);
 
-    // Variants for animating the content visibility
     const contentVariants = {
         hidden: { opacity: 0, maxHeight: 0 },
         visible: { opacity: 1, maxHeight: 1000, transition: { duration: 0.5 } },
@@ -44,12 +43,11 @@ export default function HrSystemsAccordion() {
     return (
         <section className="py-16 px-4 bg-white" id="working-method">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-3xl font-bold text-center text-[#1C3D6F] mb-12">
+                <h2 className="text-2xl text-center md:text-3xl font-bold text-[#1C3D6F] mb-12">
                     Combine all your HR systems into one platform
                 </h2>
 
                 <div className="flex flex-col md:flex-row gap-10">
-                    {/* Accordion */}
                     <div className="flex-1 space-y-4">
                         {sections.map((section, index) => (
                             <div key={index} className="border-b border-gray-200 pb-4">
@@ -62,8 +60,6 @@ export default function HrSystemsAccordion() {
                                         {openIndex === index ? <HiChevronUp /> : <HiChevronDown />}
                                     </span>
                                 </button>
-
-                                {/* Animated content */}
                                 <motion.div
                                     variants={contentVariants}
                                     initial="hidden"
@@ -91,8 +87,6 @@ export default function HrSystemsAccordion() {
                             </div>
                         ))}
                     </div>
-
-                    {/* Visual/Illustration Placeholder */}
                     <div className="flex-1 hidden md:block">
                         <div className="w-full h-[500px] bg-green-100 rounded-lg shadow flex items-center justify-center text-green-700 font-semibold">
                             Visual Placeholder

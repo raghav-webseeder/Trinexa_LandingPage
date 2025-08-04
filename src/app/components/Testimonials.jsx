@@ -66,12 +66,11 @@ export default function Testimonials() {
     return (
         <section className="bg-white py-20 px-6" id="testimonials">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-3xl font-bold text-[#1A6EBF] text-center mb-12">
+                <h2 className="text-2xl text-center md:text-3xl font-bold text-[#1C3D6F] mb-12">
                     What Our Clients Say
                 </h2>
 
                 <div className="flex flex-col lg:flex-row gap-12">
-                    {/* Left: Testimonials Grid */}
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1"
                         initial="hidden"
@@ -79,7 +78,7 @@ export default function Testimonials() {
                         variants={{
                             visible: {
                                 transition: {
-                                    staggerChildren: 0.3, // Staggered animation for each testimonial
+                                    staggerChildren: 0.3, 
                                 },
                             },
                         }}
@@ -103,8 +102,6 @@ export default function Testimonials() {
                             </motion.div>
                         ))}
                     </motion.div>
-
-                    {/* Right: Enquiry Form */}
                     <motion.div
                         className="w-full lg:max-w-sm bg-[#f9fcff] border border-gray-200 p-6 rounded-lg shadow-md"
                         variants={formVariants}
@@ -151,7 +148,6 @@ export default function Testimonials() {
                                 Submit
                             </motion.button>
 
-                            {/* Image Below Button */}
                             <div className="mt-4">
                                 <img
                                     src="./5556.png"
