@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Send } from 'lucide-react';
+import { LogIn, Send } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 
@@ -40,12 +40,10 @@ export default function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const scrollToDemo = () => {
-        const section = document.getElementById('demo');
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-            setIsOpen(false); 
-        }
+
+    // To be set: Login Route
+    const goToLogin = () => {
+
     };
 
     const handleLogoClick = () => {
@@ -89,13 +87,13 @@ export default function Header() {
                         whileTap={{ scale: 0.95 }}
                         className="group inline-flex items-center justify-center cursor-pointer bg-[#F7941D] hover:bg-[#e38114] text-white rounded-full px-4 py-2 text-sm transition relative overflow-hidden"
                         type="button"
-                        onClick={scrollToDemo}
+                        onClick={goToLogin}
                     >
                         <span className="transition-all duration-500 group-hover:opacity-0 group-hover:scale-0">
-                            Get a Demo
+                            Login
                         </span>
                         <span className="absolute inset-0 flex items-center justify-center opacity-0 scale-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-100 pointer-events-none">
-                            <Send className="w-5 h-5" />
+                            <LogIn className="w-5 h-5" />
                         </span>
                     </motion.button>
 
@@ -165,12 +163,11 @@ export default function Header() {
                                 </a>
                             ))}
 
-                            {/* Demo Button */}
                             <button
-                                onClick={scrollToDemo}
+                                onClick={goToLogin}
                                 className="bg-[#F7941D] hover:bg-[#e38114] text-white px-4 py-2 rounded-full text-sm transition"
                             >
-                                Get a Demo
+                                Login
                             </button>
 
                         </motion.div>
