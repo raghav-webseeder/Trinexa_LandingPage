@@ -41,7 +41,7 @@ export default function Header() {
     }, []);
 
     const goToLogin = () => {
-        router.push('/login'); 
+        router.push('/login');
     };
 
     const handleLogoClick = () => {
@@ -64,7 +64,7 @@ export default function Header() {
                     className="flex items-center space-x-2 cursor-pointer"
                     onClick={handleLogoClick}
                 >
-                    <img src="/logo.png" alt="Trinexa Global Logo" className="h-12" />
+                    <img src="/Logo.png" alt="Trinexa Global Logo" className="h-12" />
                 </div>
 
                 {pathname === '/' && (
